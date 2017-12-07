@@ -1,8 +1,8 @@
 Redmine::Plugin.register :ingeekvacation do
   name 'Ingeekvacation plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
+  author 'truman'
+  description 'a vacation management plugin'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://github.com/trumanliu/ingeekvacation'
+  author_url 'trumanliu.com'
 end

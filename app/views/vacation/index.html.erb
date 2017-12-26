@@ -1,3 +1,5 @@
-<h2>VacationController#index</h2>
 
-<%=ßthis_user%> 
+<%= form_for @vacation, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+  <%= f.text_area :reason, size: "60x12" %>
+  <%= f.submit "Create" %>
+<% end %>

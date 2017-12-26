@@ -1,4 +1,4 @@
-class CreateVacations < ActiveRecord::Migration[5.1]
+class CreateVacations < ActiveRecord::Migration
   def change
     create_table :vacations do |t|
       t.datetime :start

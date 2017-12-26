@@ -1,3 +1,3 @@
 class Vacation < ActiveRecord::Base
-  unloadable
+  attr_accessible :end, :reason, :start
 end

@@ -1,5 +1,18 @@
 
 <%= form_for @vacation, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
-  <%= f.text_area :reason, size: "60x12" %>
-  <%= f.submit "Create" %>
+<div class="box tabular">
+ <p>
+  <%= label_tag(:start, "请假开始时间:") %>
+  <%= f.date_field :start, :size => 10 , :required => true %>
+  </p>
+  <p>
+  <%= label_tag(:end, "请假开始时间:") %>
+  <%= f.date_field :end, :size => 10 , :required => true %>
+  </p>
+  <p>
+  <%= label_tag(:reason, "请假事由:") %>
+  <%= f.text_area :reason, size: "60x12" , :required => true  %>
+  </p>
+  <p><%= f.submit "请假" %></p>
+  </div>
 <% end %>

@@ -1,8 +1,8 @@
 class CreateVacations < ActiveRecord::Migration
   def change
     create_table :vacations do |t|
-      t.datetime :start
-      t.datetime :end
+      t.timestamp :start
+      t.timestamp :end
       t.text :reason
       t.integer :auditId
       t.string :auditor
@@ -10,6 +10,7 @@ class CreateVacations < ActiveRecord::Migration
       t.string :applier
       t.integer :status
       t.string :statusShow
+      t.integer :vahours
     end
   end
 end

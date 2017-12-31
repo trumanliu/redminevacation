@@ -1,0 +1,35 @@
+<%= form_for @vacation, url: {action: "index"}, html: {class: "nifty_form"} do |f| %>
+<div class="box tabular">
+ <p>
+  <label  class="required" for="start" id="start"><%="休假开始时间:"%></label>
+  <%= f.date_field :start, :size => 10 , :required => true  ,:disabled => true %>
+  </p>
+  <p>
+  <label  class="required" for="end" id="end"><%="休假结束时间:"%></label>
+  <%= f.date_field :end, :size => 10 , :required => true ,:disabled => true %>
+  </p>
+  <p>
+  <label  class="required" for="hours" id="hours"><%="请假时长:"%></label>
+  <%= f.text_field :hours, size: "8" , :required => true  ,:disabled => true %> <label class="inline">小时</label>
+  </p>
+  <p>
+  <label  class="required" for="auditName" id="auditName"><%="审批人:"%></label>
+  <%= f.text_field :auditName, size: "8" , :required => true  ,:disabled => true %> 
+  </p>
+  
+  <p>
+   <label  class="required" for="vatype" id="vatype">假期类型</label>
+     <%= f.select(:vatype, options_for_select([["调休假", "1"], ["年假", "2"], ["病假", "3"]],@vacation.vatype),{:disabled => true} ) %>
+  </p>
+  
+  <label  class="required" for="reason" id="reason"><%="休假事由:"%></label>
+  <%= f.text_area :reason, size: "30x12" , :required => true  ,:disabled => true %>
+  </p>
+  <%= link_to "返回", vacation_index_path ,:class => 'icon icon-reload' %>
+  </div>
+<% end %>
+
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'vacation', :plugin => 'ingeekvacation' %>
+<% end %>

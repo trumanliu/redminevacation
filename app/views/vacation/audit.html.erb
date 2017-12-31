@@ -1,10 +1,7 @@
-<h1>休假申请</h1>
+<h1>审批中心</h1> 
 
-<div class="contextual">
-<%= link_to "新增休假申请", new_vacation_path , :class => 'icon icon-add new-vacation'  %>
-</div>
- 
 <div>
+<h2>休假审批</h2>
 <table>
   <tr>
     <th>申请人</th>
@@ -14,6 +11,7 @@
     <th>审批人</th>
     <th>审批进度</th>
 
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -29,6 +27,7 @@
     <td><%= vacation.statusShow %></td>
     <td><%= link_to "查看", vacation %></td>
     <td><%= link_to "修改", edit_vacation_path(vacation) %></td>
+    <td><%= link_to "审批通过", ({:controller =>'vacation',:action => 'auditpass',:id => vacation.id}), data: { confirm: "确定审批通过?" } %></td>
     <td><%= link_to "删除", vacation, method: :delete, data: { confirm: "确定删除?" } %></td>
   </tr>
 <% end %>

@@ -6,8 +6,11 @@ Redmine::Plugin.register :ingeekvacation do
   url 'https://github.com/trumanliu/ingeekvacation'
   author_url 'trumanliu.com'
 
-  permission :休假申请, :vacation => :new
+  permission :休假申请, :vacation => :index
   menu :top_menu, :vacation, { :controller => 'vacation', :action => 
-  'new' }, :caption => '休假申请' 
+  'index' }, :caption => '休假申请' 
+  permission :审批中心, :vacation => :index
+  menu :account_menu, :vacation, { :controller => 'vacation', :action => 
+  'audit' }, :caption => '审批中心' 
 
 end

@@ -7,10 +7,13 @@ class CreateVacations < ActiveRecord::Migration
       t.integer :auditId
       t.string :auditor
       t.integer :applyId
-      t.string :applier
       t.integer :status
       t.string :statusShow
-      t.integer :vahours
+      t.integer :hours
+      t.string :applyName
+      t.string :auditName
+      t.integer :vatype
+      t.string :typeName
     end
   end
 end

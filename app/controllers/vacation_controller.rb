@@ -1,7 +1,7 @@
 class VacationController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index,:audit]
   before_action :set_vacation, only: [:show, :edit, :update, :destroy,:auditpass]
-
+  include CustomFieldsHelper
   def new
     @vacation = Vacation.new();
     @users = User.all
@@ -9,17 +9,29 @@ class VacationController < ApplicationController
   end
 
   def index
-    @vacations = Vacation.all
+    curt_uid = User.current.id
+    @vacations = Vacation.where(applyId: curt_uid)
   end
 
   def audit
-    @vacations = Vacation.all
+    curt_uid = User.current.id
+    @vacations = Vacation.where(auditId: curt_uid, statusShow: '待审批')
+    @time_logs = TimeEntry.where(audit_id: curt_uid, audit_status: '待审核')
   end
   def auditpass
-    # @vacation = Vacation.find_by(id: params[:id])
-    # @vacation.statusShow = '审批通过'
     @vacation.update_attribute(:statusShow,'审批通过')
-    @vacations = Vacation.all
+    curt_uid = User.current.id
+    @vacations = Vacation.where(auditId: curt_uid, statusShow: '待审批')
+    @time_logs = TimeEntry.where(audit_id: curt_uid, audit_status: '待审核')
+    render :audit
+  end
+
+  def auditpasstime
+    curt_uid = User.current.id
+    @timelog = TimeEntry.find_by(id: params[:id])
+    @timelog.update_attribute(:audit_status,'审批通过')
+    @vacations = Vacation.where(auditId: curt_uid, statusShow: '待审批')
+    @time_logs = TimeEntry.where(audit_id: curt_uid, audit_status: '待审核')
     render :audit
   end
 
@@ -70,7 +82,6 @@ class VacationController < ApplicationController
       end
       format.js
     end
-   
   end
 
   
@@ -82,5 +93,5 @@ class VacationController < ApplicationController
 
     def vacation_params
       params.require(:vacation).permit!
-     end
+    end
 end

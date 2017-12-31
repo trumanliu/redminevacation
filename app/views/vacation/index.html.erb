@@ -5,22 +5,21 @@
 </div>
  
 <div>
-<table>
-  <tr>
-    <th>申请人</th>
-    <th>开始日期</th>
-    <th>结束日期</th>
-    <th>请假时长</th>
-    <th>审批人</th>
-    <th>审批进度</th>
-
-    <th></th>
-    <th></th>
-    <th></th>
+<table class="list odd-even">
+  <tr class="group open">
+    <th class="checkbox hide-when-print">申请人</th>
+    <th class="checkbox hide-when-print">开始日期</th>
+    <th class="checkbox hide-when-print">结束日期</th>
+    <th class="checkbox hide-when-print">请假时长</th>
+    <th class="checkbox hide-when-print">审批人</th>
+    <th class="checkbox hide-when-print">审批进度</th>
+    <th class="checkbox hide-when-print"></th>
+    <th class="checkbox hide-when-print"></th>
+    <th class="checkbox hide-when-print"></th>
   </tr>
  
 <% @vacations.each do |vacation| %>
-  <tr>
+  <tr class="time-entry <%= cycle("odd", "even") %> hascontextmenu">
     <td><%= vacation.applyName %></td>
     <td><%= vacation.start %></td>
     <td><%= vacation.end %></td>

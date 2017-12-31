@@ -1,24 +1,23 @@
 <h1>审批中心</h1> 
-
-<div>
+<div class="autoscroll">
 <h2>休假审批</h2>
-<table>
-  <tr>
-    <th>申请人</th>
-    <th>开始日期</th>
-    <th>结束日期</th>
-    <th>请假时长</th>
-    <th>审批人</th>
-    <th>审批进度</th>
+<table class="list odd-even">
+  <tr class="group open">
+    <th class="checkbox hide-when-print">申请人</th>
+    <th class="checkbox hide-when-print">开始日期</th>
+    <th class="checkbox hide-when-print">结束日期</th>
+    <th class="checkbox hide-when-print">请假时长</th>
+    <th class="checkbox hide-when-print">审批人</th>
+    <th class="checkbox hide-when-print">审批进度</th>
 
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="checkbox hide-when-print"></th>
+    <th class="checkbox hide-when-print"></th>
+    <th class="checkbox hide-when-print"></th>
+    <th class="checkbox hide-when-print"></th>
   </tr>
  
 <% @vacations.each do |vacation| %>
-  <tr>
+  <tr class="time-entry <%= cycle("odd", "even") %> hascontextmenu" >
     <td><%= vacation.applyName %></td>
     <td><%= vacation.start %></td>
     <td><%= vacation.end %></td>
@@ -34,6 +33,33 @@
 </table>
 </div>
  
+<div>
+<h2>工时审批</h2>
+<table class="list odd-even">
+  <tr class="group open">
+    <th class="checkbox hide-when-print">用户</th>
+    <th class="checkbox hide-when-print">日期</th>
+    <th class="checkbox hide-when-print">时长</th>
+    <th class="checkbox hide-when-print">说明</th>
+    <th class="checkbox hide-when-print"></th>
+    <th class="checkbox hide-when-print"></th>
+    <th class="checkbox hide-when-print"></th>
+    <th class="checkbox hide-when-print"></th>
+
+  </tr>
+ 
+<% @time_logs.each do |time_log| %>
+  <tr class="time-entry <%= cycle("odd", "even") %> hascontextmenu">
+    <td><%= time_log.username %></td>
+    <td><%= time_log.spent_on %></td>
+    <td><%= time_log.hours %></td>
+    <td><%= time_log.comments %></td>
+    <td><%= link_to "修改", edit_time_entry_path(time_log) %></td>
+    <td><%= link_to "审批通过", ({:controller =>'vacation',:action => 'auditpasstime',:id => time_log.id}), data: { confirm: "确定审批通过?" } %></td>
+  </tr>
+<% end %>
+</table>
+</div>
 
 <% content_for :header_tags do %>
     <%= stylesheet_link_tag 'vacation', :plugin => 'ingeekvacation' %>

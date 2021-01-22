@@ -1,4 +1,4 @@
-# ingeek vacation plugin
+#  vacation plugin
 
 Redmine 假期管理插件。在原有工时登记基础上添加加班工时审批、请假管理等。
 
